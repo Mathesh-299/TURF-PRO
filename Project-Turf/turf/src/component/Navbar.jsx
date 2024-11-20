@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaUserCircle } from 'react-icons/fa';
 import { Link, NavLink } from 'react-router-dom';
-// import UserMenu from './UserMenu';
+
 import Login from '../page/Login';
 
 const Navbar = ({ user, onLogout }) => {
