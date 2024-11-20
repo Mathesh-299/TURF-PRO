@@ -1,55 +1,51 @@
-// src/pages/Login.jsx
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom'; 
+import React from 'react';
+import { Link } from 'react-router-dom';
+import SportsBackground from '../assets/img/photo-1452778374718-046c69a5c02f.jpg'; // Replace with the actual path to your image
 
 const Login = () => {
-    const [selectedRole, setSelectedRole] = useState(null); 
-
     return (
-        <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-slate-800 to-red-500">
-            <div className="bg-white p-8 rounded-xl shadow-xl w-full max-w-md">
-                <h2 className="text-4xl font-extrabold text-center text-gray-800 mb-8">TurfHub</h2>
+        <div
+            className="fixed inset-0 bg-cover bg-center bg-no-repeat flex justify-center items-center z-30"
+            style={{
+                backgroundImage: `url(${SportsBackground})`, // Using imported image
+            }}
+        >
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-black bg-opacity-70"></div>
 
-                <div className="flex justify-center space-x-4 mb-8">
-                    <NavLink
-                        to="/adminlogin" 
-                        className={`px-6 py-3 rounded-lg text-lg font-semibold transition duration-300 transform ${selectedRole === 'admin'
-                            ? 'bg-blue-600 text-white'
-                            : 'bg-gray-200 text-gray-700 hover:bg-blue-500'
-                        }`}
-                        onClick={() => setSelectedRole('admin')}
+            {/* Modal Box */}
+            <div className="relative bg-white rounded-2xl shadow-2xl w-96 px-8 py-10 text-center z-40">
+                <h2 className="text-3xl font-extrabold text-gray-800 mb-4">
+                    Welcome to <span className="text-red-500">Turf</span>
+                    <span className="text-yellow-500">Hub</span>
+                </h2>
+                <p className="text-gray-500 mb-8">
+                    Choose your login type to continue.
+                </p>
+
+                {/* Login Buttons */}
+                <div className="space-y-6">
+                    <Link
+                        to="/adminlogin"
+                        className="block w-full py-3 rounded-lg text-lg font-semibold text-white bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 shadow-lg hover:shadow-red-500/50 transition duration-300"
                     >
                         Admin Login
-                    </NavLink>
-                    <NavLink
-                        to="/userlogin" // Navigate to UserLogin page
-                        className={`px-6 py-3 rounded-lg text-lg font-semibold transition duration-300 transform ${selectedRole === 'user'
-                            ? 'bg-green-600 text-white'
-                            : 'bg-gray-200 text-gray-700 hover:bg-green-500'
-                        }`}
-                        onClick={() => setSelectedRole('user')}
+                    </Link>
+                    <Link
+                        to="/userlogin"
+                        className="block w-full py-3 rounded-lg text-lg font-semibold text-white bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 shadow-lg hover:shadow-blue-500/50 transition duration-300"
                     >
                         User Login
-                    </NavLink>
+                    </Link>
                 </div>
 
-                <div className="p-6 rounded-lg shadow-md bg-gray-50">
-                    {selectedRole === 'admin' ? (
-                        <div className="text-center">
-                            <h3 className="text-2xl font-semibold text-blue-600 mb-4">Admin Login</h3>
-                            <p className="text-lg text-gray-600">You will be redirected to the admin login page.</p>
-                        </div>
-                    ) : selectedRole === 'user' ? (
-                        <div className="text-center">
-                            <h3 className="text-2xl font-semibold text-green-600 mb-4">User Login</h3>
-                            <p className="text-lg text-gray-600">You will be redirected to the user login page.</p>
-                        </div>
-                    ) : (
-                        <div className="text-center">
-                            <h3 className="text-xl text-gray-600 mb-4">Select a role to log in.</h3>
-                        </div>
-                    )}
-                </div>
+                {/* Close Button */}
+                <Link
+                    to="/"
+                    className="absolute top-4 right-4 text-white bg-gray-800 hover:bg-gray-700 rounded-full w-8 h-8 flex items-center justify-center shadow-md transition duration-300"
+                >
+                    ✕
+                </Link>
             </div>
         </div>
     );
