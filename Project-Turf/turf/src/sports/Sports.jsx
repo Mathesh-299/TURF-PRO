@@ -56,7 +56,7 @@ const Sports = () => {
                             your team and make it an unforgettable game.
                         </p>
                         <a
-                            href="/booking/cricket"
+                            href="/bookings"
                             className="inline-block px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 hover:shadow-md transition-all duration-300"
                         >
                             Book Now
@@ -79,7 +79,7 @@ const Sports = () => {
                             play.
                         </p>
                         <a
-                            href="/booking/basketball"
+                            href="/bookings"
                             className="inline-block px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 hover:shadow-md transition-all duration-300"
                         >
                             Book Now
@@ -100,7 +100,7 @@ const Sports = () => {
                             all players.
                         </p>
                         <a
-                            href="/booking/tennis"
+                            href="/bookings"
                             className="inline-block px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 hover:shadow-md transition-all duration-300"
                         >
                             Book Now
@@ -123,7 +123,7 @@ const Sports = () => {
                             turf for your game.
                         </p>
                         <a
-                            href="/booking/badminton"
+                            href="/bookings"
                             className="inline-block px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 hover:shadow-md transition-all duration-300"
                         >
                             Book Now
