@@ -38,24 +38,4 @@ const validate = (data) => {
 };
 
 
-// Admin Login
-router.post("/adminlogin", async (req, res) => {
-  const { email, password } = req.body;
-  const admin = await Admin.findOne({ email });
-  if (!admin || !(await bcrypt.compare(password, admin.password))) {
-    return res.status(400).send("Invalid credentials");
-  }
-  const token = jwt.sign({ id: admin._id }, process.env.JWT_SECRET);
-  res.json({ token });
-});
-
-// Admin Registration
-router.post("/adminregister", async (req, res) => {
-  const { username, email, password } = req.body;
-  const hashedPassword = await bcrypt.hash(password, 10);
-  const admin = new Admin({ username, email, password: hashedPassword });
-  await admin.save();
-  res.status(201).send("Admin registered");
-});
-
 module.exports = router;

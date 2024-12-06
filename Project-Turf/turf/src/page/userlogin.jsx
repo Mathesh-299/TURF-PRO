@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { useRef, useState } from 'react';
 import { FaEnvelope, FaEye, FaEyeSlash, FaLock } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; // Import Toast styles
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const loginFormRef = useRef();
@@ -13,6 +13,7 @@ const Login = () => {
     password: "",
   });
   const [passwordVisible, setPasswordVisible] = useState(false); // State to toggle password visibility
+  const navigate = useNavigate(); // Initialize navigate
 
   const handleChange = ({ currentTarget: input }) => {
     setData({ ...data, [input.name]: input.value });
@@ -24,14 +25,15 @@ const Login = () => {
       const url = "http://localhost:8000/api/auth";
       const { data: res } = await axios.post(url, data);
       localStorage.setItem("token", res.data);
-      toast.success("Login Successful! Welcome back."); // Show success toast
-      window.location = "/"; // Redirect user after successful login
+      toast.success("Login Successful! Welcome back.");
+      console.log("Login Successful");
+      navigate('/'); // Use navigate to go to the /bookings page
     } catch (error) {
       if (error.response && error.response.status >= 400 && error.response.status <= 500) {
         setError(error.response.data.message);
         toast.error(error.response.data.message); // Show error toast
       } else {
-        toast.error("An unexpected error occurred"); // General error message
+        toast.error("An unexpected error occurred");
       }
     }
   };

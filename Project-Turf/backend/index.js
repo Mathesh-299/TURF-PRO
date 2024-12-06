@@ -1,29 +1,36 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+const bodyParser = require("body-parser");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 const db = require("./db"); // Database connection
-const userRoutes = require("./routes/users"); // User routes
-const authRoutes = require("./routes/auth"); // Authentication routes
-const bookingRoutes =require("./routes/bookingRoutes")
-const bodyParser = require('body-parser');
-const adminRoutes = require('./routes/adminRoutes');
-const groundRoutes = require('./routes/groundrouters');
-const app = express();
-const port = process.env.PORT || 8000; 
-app.use(express.json()); // Parse incoming JSON requests
-app.use(cors()); // Enable CORS for all routes
+const userRoutes = require("./routes/users");
+const authRoutes = require("./routes/auth");
+const adminRoutes = require("./routes/admin");  // Importing the admin routes
 
-// Connect to MongoDB
-db(); // Ensure that the connection to the database is established
+const app = express();
+const port = process.env.PORT || 8000;
+
+app.use(express.json());
+app.use(cors());
 app.use(bodyParser.json());
-app.use('/api', adminRoutes);
-app.use('/api/ground', groundRoutes);
-app.use("/api/users", userRoutes); // User-related routes
-app.use("/api/auth", authRoutes); // Authentication routes
-// app.use('/api/bookings', bookingRoutes);
-app.use('/api/bookings', bookingRoutes);
+
+// Database connection
+db();
+
+// Routes
+app.use("/api/users", userRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/admin", adminRoutes);  // Admin routes
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ message: "Something went wrong!" });
+});
 
 // Start server
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`); // Log that the server is running
+  console.log(`Server is running on http://localhost:${port}`);
 });

@@ -26,7 +26,16 @@ router.post("/", async (req, res) => {
     await newUser.save();
 
     // Return success response
-    res.status(201).send({ message: "Registration is successfully completed" });
+    const userResponse = {
+      fullName: newUser.fullName,
+      email: newUser.email,
+      _id: newUser._id,
+    };
+
+    res.status(201).send({
+      message: "Registration is successfully completed",
+      user: userResponse,
+    });
   } catch (error) {
     console.error("Error during registration:", error);
     res.status(500).send({ message: "Internal Server Error" });
