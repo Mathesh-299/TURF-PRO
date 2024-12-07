@@ -7,7 +7,8 @@ import About from "./page/About";
 import AdminLogin from "./page/AdminLogin";
 import AdminRegister from "./page/AdminRegister";
 import Contact from "./page/Contact";
-import Groundpage from "./page/Groundpage";
+import GroundBooking from "./page/GroundBooking";
+import { default as Groundpage } from "./page/Groundpage";
 import Home from "./page/Home";
 import Login from "./page/Login";
 import Main from "./page/Main";
@@ -64,19 +65,18 @@ const App = () => {
                         <Route path="/userlogin" element={<UserLogin onLogin={handleLogin} />} />
                         <Route path="/adminlogin" element={<AdminLogin onLogin={handleLogin} />} />
                         <Route path="/adminregister" element={<AdminRegister />} />
-                        <Route path="/main" element={<Main />} />
+                        <Route path="/groundpage" element={<Groundpage />} />
 
-                        {/* Protected Routes */}
+                        <Route path="/main" element={<Main />} />
                         <Route
-                            path="/groundpage"
+                            path="/ground"
                             element={
-                                // <ProtectedRoute>
-                                    <Groundpage />
+
+                                <GroundBooking />
                                 // </ProtectedRoute>
                             }
                         />
 
-                        {/* Redirect for undefined routes */}
                         <Route path="*" element={<Navigate to="/" />} />
                     </Routes>
                 </div>

@@ -1,18 +1,21 @@
 require("dotenv").config();
 const express = require("express");
-const mongoose =require("mongoose")
+const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcryptjs");
-const db = require("./db"); // Database connection
+const db = require("./db"); // Ensure the file exists in the correct path
 const userRoutes = require("./routes/users");
 const authRoutes = require("./routes/auth");
-const adminRoutes = require("./routes/admin");  // Importing the admin routes
+const adminRoutes = require("./routes/admin");
+const socketIo = require("socket.io"); // Import Socket.io
+
+// Import the Booking model
+const Booking = require("./models/bookingschema");
 
 const app = express();
 const port = process.env.PORT || 8000;
 
+// Middleware
 app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
@@ -20,81 +23,59 @@ app.use(bodyParser.json());
 // Database connection
 db();
 
+// Create server and listen for connections
+const server = app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
+
+// Set up Socket.io for real-time communication
+const io = socketIo(server, {
+  cors: {
+    origin: "http://localhost:8000",  // Allow connection from frontend's URL
+    methods: ["GET", "POST"],
+  }
+});
+
 // Routes
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
-app.use("/api/admin", adminRoutes);  // Admin routes
+app.use("/api/admin", adminRoutes); // Admin routes
 
-// Error handling middleware
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ message: "Something went wrong!" });
-});
-
-const groundSchema = new mongoose.Schema({
-  name: String,
-  price: Number,
-  location: String,
-  contact: String,
-  image: String,
-});
-
-// Ground Model
-const Ground = mongoose.model("Ground", groundSchema);
-
-// Routes
-app.get("/api/grounds", async (req, res) => {
+app.get('/api/ground/available', async (req, res) => {
   try {
-    const grounds = await Ground.find();
-    res.json(grounds);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+    const bookings = await Booking.find();
+    res.json(bookings);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch bookings' });
   }
 });
 
-app.post("/api/grounds", async (req, res) => {
-  const { name, price, location, contact, image } = req.body;
-  const newGround = new Ground({ name, price, location, contact, image });
+// API to handle bookings
+app.post('/api/ground/book', async (req, res) => {
+  const { date, session } = req.body;
+
+  console.log('Received booking request:', req.body);  // Log the incoming data
+
   try {
-    const savedGround = await newGround.save();
-    res.status(201).json(savedGround);
-  } catch (err) {
-    res.status(400).json({ message: err.message });
+    // Check if the booking for the specified date already exists
+    let booking = await Booking.findOne({ date });
+
+    if (booking && booking[session]) {
+      return res.status(400).json({ error: `${session} slot is already booked.` });
+    }
+
+    // If no booking exists for this date, create a new one
+    if (!booking) {
+      booking = new Booking({ date });
+    }
+
+    // Book the session
+    booking[session] = true;
+    await booking.save();
+
+    res.json({ message: `${session} slot booked successfully.` });
+  } catch (error) {
+    console.error('Error during booking:', error);  // Log the error
+    res.status(500).json({ error: 'Failed to book session' });
   }
-});
-
-app.put("/api/grounds/:id", async (req, res) => {
-  try {
-    const ground = await Ground.findById(req.params.id);
-    if (!ground) return res.status(404).json({ message: "Ground not found" });
-
-    const { name, price, location, contact, image } = req.body;
-    ground.name = name;
-    ground.price = price;
-    ground.location = location;
-    ground.contact = contact;
-    ground.image = image;
-
-    const updatedGround = await ground.save();
-    res.json(updatedGround);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
-
-app.delete("/api/grounds/:id", async (req, res) => {
-  try {
-    const ground = await Ground.findById(req.params.id);
-    if (!ground) return res.status(404).json({ message: "Ground not found" });
-
-    await ground.remove();
-    res.status(204).json({ message: "Ground deleted" });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
-
-// Start server
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
 });
