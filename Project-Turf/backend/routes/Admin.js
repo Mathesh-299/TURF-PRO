@@ -65,7 +65,7 @@ router.post("/login", async (req, res) => {
 });
 
 // Protected Route: Admin Sports Page
-router.get("/sports", verifyToken, async (req, res) => {
+router.get("admin/sports", verifyToken, async (req, res) => {
   try {
     // Simulating a dynamic sports page with sports data
     const sports = [

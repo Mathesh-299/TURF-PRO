@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import pic from "../assets/img/depositphotos_150617828-stock-photo-soccer-ball-on-grass.jpg";
 import pic1 from "../assets/img/depositphotos_8307714-stock-photo-cricket-ball.jpg";
 import pic2 from "../assets/img/photo-1494199505258-5f95387f933c.jpeg";
@@ -7,8 +7,6 @@ import pic3 from "../assets/img/photo-1721760886713-1ab0c5045bf7.jpeg";
 import pic4 from "../assets/img/premium_photo-1666913667082-c1fecc45275d.jpeg";
 
 const Sports = () => {
-    const navigate = useNavigate();
-
     return (
         <div className="min-h-screen bg-gradient-to-r from-green-500 via-blue-400 to-gray-500 py-20">
             <div className="max-w-6xl mx-auto text-center px-4">
@@ -30,12 +28,12 @@ const Sports = () => {
                         <p className="text-gray-600 mb-4">
                             Experience the thrill of football on well-maintained turfs.
                         </p>
-                        <button
-                            onClick={() => navigate("/groundpage")}
+                        <NavLink
+                            to="/groundpage"
                             className="inline-block px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 hover:shadow-md transition-all duration-300"
                         >
                             Book Now
-                        </button>
+                        </NavLink>
                     </div>
                     {/* Cricket */}
                     <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
@@ -48,12 +46,12 @@ const Sports = () => {
                         <p className="text-gray-600 mb-4">
                             Play cricket with professional facilities on our custom-made turfs.
                         </p>
-                        <button
-                            onClick={() => navigate("/groundpage")}
+                        <NavLink
+                            to="/groundpage"
                             className="inline-block px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 hover:shadow-md transition-all duration-300"
                         >
                             Book Now
-                        </button>
+                        </NavLink>
                     </div>
                     {/* Basketball */}
                     <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
@@ -66,12 +64,12 @@ const Sports = () => {
                         <p className="text-gray-600 mb-4">
                             Take your basketball game to the next level on our premium courts.
                         </p>
-                        <button
-                            onClick={() => navigate("/groundpage")}
+                        <NavLink
+                            to="/groundpage"
                             className="inline-block px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 hover:shadow-md transition-all duration-300"
                         >
                             Book Now
-                        </button>
+                        </NavLink>
                     </div>
                     {/* Tennis */}
                     <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
@@ -84,12 +82,12 @@ const Sports = () => {
                         <p className="text-gray-600 mb-4">
                             Enjoy a game of tennis with high-quality courts and equipment.
                         </p>
-                        <button
-                            onClick={() => navigate("/groundpage")}
+                        <NavLink
+                            to="/groundpage"
                             className="inline-block px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 hover:shadow-md transition-all duration-300"
                         >
                             Book Now
-                        </button>
+                        </NavLink>
                     </div>
                     {/* Volleyball */}
                     <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
@@ -102,12 +100,12 @@ const Sports = () => {
                         <p className="text-gray-600 mb-4">
                             Play volleyball on our state-of-the-art indoor and outdoor courts.
                         </p>
-                        <button
-                            onClick={() => navigate("/groundpage")}
+                        <NavLink
+                            to="/groundpage"
                             className="inline-block px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 hover:shadow-md transition-all duration-300"
                         >
                             Book Now
-                        </button>
+                        </NavLink>
                     </div>
                 </div>
             </div>

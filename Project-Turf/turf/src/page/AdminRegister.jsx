@@ -173,7 +173,7 @@ const AdminRegister = () => {
                 </div>
 
                 {/* Right side - Admin Related Info */}
-                <div className="hidden md:block w-1/2 pl-12 space-y-6">
+                <div className="hidden md:block md:w-1/2 pl-12 space-y-6">
                     <h2 className="text-2xl font-semibold text-gray-700">Welcome to TurfHub Admin</h2>
                     <p className="text-gray-600">
                         Manage your TurfHub services and bookings efficiently. As an admin, you have the ability to control user access, manage bookings, and ensure everything runs smoothly for all users.
@@ -184,6 +184,7 @@ const AdminRegister = () => {
                 </div>
             </div>
         </div>
+
     );
 };
 

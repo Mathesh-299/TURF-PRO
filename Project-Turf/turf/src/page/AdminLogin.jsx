@@ -36,7 +36,7 @@ const AdminLogin = () => {
 
             const { token } = response.data;
             localStorage.setItem("adminToken", token); // Store JWT token in localStorage
-            navigate("/sports"); // Redirect to sports page
+            navigate("/"); // Redirect to sports page
         } catch (err) {
             setErrorMessage("Invalid credentials. Please try again.");
         } finally {

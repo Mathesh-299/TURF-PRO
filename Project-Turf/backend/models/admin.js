@@ -9,6 +9,10 @@ const AdminSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true
+  },
+  role: { // Fixed the error here by adding a colon ':'
+    type: String,
+    default: "admin"
   }
 });
 
