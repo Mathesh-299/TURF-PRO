@@ -68,18 +68,8 @@ const App = () => {
                         <Route path="/adminregister" element={<AdminRegister />} />
                         <Route path="/groundpage" element={<Groundpage />} />
                         <Route path="/adminside" element={<AdminPanel />} />
-
                         <Route path="/main" element={<Main />} />
-                        <Route
-                            path="/ground"
-                            element={
-
-                                <GroundBooking />
-                                // </ProtectedRoute>
-                            }
-                        />
-
-                        {/* <Route path="*" element={<Navigate to="/" />} /> */}
+                        <Route path="/ground"element={<GroundBooking />}/>
                     </Routes>
                 </div>
                 {/* Other components */}
