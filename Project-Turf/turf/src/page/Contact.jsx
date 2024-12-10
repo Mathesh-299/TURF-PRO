@@ -1,110 +1,198 @@
-import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
+import React, { useState } from "react";
+import {
+  FaEnvelope,
+  FaFacebook,
+  FaInstagram,
+  FaMapMarkerAlt,
+  FaPen,
+  FaPhoneAlt,
+  FaUserCircle,
+  FaWhatsapp,
+} from "react-icons/fa";
+import { TbX } from "react-icons/tb";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Contact = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [message, setMessage] = useState("");
+
+  const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!name || !email || !message || !phone) {
+      toast.error("All fields are required.");
+    } else if (!validateEmail(email)) {
+      toast.error("Please enter a valid email address.");
+    } else {
+      toast.success("Message sent successfully!");
+      setName("");
+      setEmail("");
+      setPhone("");
+      setMessage("");
+    }
+  };
+
   return (
-    <div className="bg-gradient-to-r from-yellow-500 via-gray-400 to-green-300 py-16">
-      <div className="max-w-7xl mx-auto px-6 text-center">
-        <h1 className="text-5xl font-extrabold text-gray-900 mb-6 tracking-tight">Contact Us</h1>
-        <p className="text-lg text-gray-700 mb-12 max-w-xl mx-auto">
-          We're here to help! Reach out to us for any inquiries, bookings, or support. We value your feedback and look forward to hearing from you.
+    <div className="bg-gray-50 min-h-screen">
+      {/* Header Section */}
+      <header className="bg-red-500  text-white py-10 text-center shadow-lg">
+        <h1 className="text-5xl font-extrabold tracking-tight">Contact Us</h1>
+        <p className="mt-3 text-lg font-medium">
+          We're here to help! Reach out for any queries or support.
         </p>
-        
-        <div className="grid md:grid-cols-2 gap-16 px-4 md:px-0">
-          {/* Left Section */}
-          <div className="space-y-8">
-            <h2 className="text-3xl font-semibold text-gray-800">Get in Touch</h2>
-            <p className="text-gray-600">Feel free to send us a message, and we'll get back to you as soon as possible.</p>
-            <form className="space-y-6 max-w-md mx-auto">
-              <div className="space-y-2">
+      </header>
+
+      {/* Contact Information */}
+      <section className="p-8">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+          {[
+            {
+              Icon: FaPhoneAlt,
+              title: "Call Us",
+              description: "+91 98765 43210",
+            },
+            {
+              Icon: FaEnvelope,
+              title: "Email Us",
+              description: "support@turfhub.com",
+            },
+            {
+              Icon: FaMapMarkerAlt,
+              title: "Visit Us",
+              description: "123 Turfhub Lane, Chennai, Tamil Nadu, India",
+            },
+          ].map((item, index) => (
+            <div
+              key={index}
+              className="bg-white shadow-lg rounded-lg p-6 text-center hover:scale-105 transform transition-transform duration-300"
+            >
+              <item.Icon className="text-red-500 text-5xl mx-auto mb-4" />
+              <h2 className="text-2xl font-bold">{item.title}</h2>
+              <p className="mt-2 text-gray-600">{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="bg-gray-200 py-8">
+        <div className="max-w-3xl mx-auto bg-white shadow-lg rounded-lg p-8">
+          <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">
+            Send Us a Message
+          </h2>
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {[
+              {
+                placeholder: "Enter your name",
+                value: name,
+                setValue: setName,
+                Icon: FaUserCircle,
+              },
+              {
+                placeholder: "Enter your email",
+                value: email,
+                setValue: setEmail,
+                Icon: FaEnvelope,
+              },
+              {
+                placeholder: "Enter your phone number",
+                value: phone,
+                setValue: setPhone,
+                Icon: FaPhoneAlt,
+              },
+            ].map((field, index) => (
+              <div key={index} className="relative">
+                <field.Icon className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 text-2xl" />
                 <input
                   type="text"
-                  placeholder="Your Name"
-                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50 shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
-                  required
+                  placeholder={field.placeholder}
+                  className="w-full pl-14 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                  value={field.value}
+                  onChange={(e) => field.setValue(e.target.value)}
                 />
               </div>
-              <div className="space-y-2">
-                <input
-                  type="email"
-                  placeholder="Your Email"
-                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50 shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
-                  required
-                />
-              </div>
-              <div className="space-y-2">
-                <textarea
-                  placeholder="Your Message"
-                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50 shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
-                  rows="6"
-                  required
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                className="w-full bg-yellow-500 text-white py-3 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-50 transition-all duration-300 ease-in-out transform hover:scale-105"
-              >
-                Send Message
-              </button>
-            </form>
-          </div>
-
-          {/* Right Section */}
-          <div className="space-y-8">
-            <h2 className="text-3xl font-semibold text-gray-800">Follow Us</h2>
-            <p className="text-gray-600">Stay connected with us through social media for updates, news, and more!</p>
-            <div className="flex space-x-8 justify-center">
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-4xl text-gray-700 hover:text-blue-600 transition duration-300 ease-in-out transform hover:scale-125"
-              >
-                <FaFacebook />
-              </a>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-4xl text-gray-700 hover:text-pink-600 transition duration-300 ease-in-out transform hover:scale-125"
-              >
-                <FaInstagram />
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-4xl text-gray-700 hover:text-blue-400 transition duration-300 ease-in-out transform hover:scale-125"
-              >
-                <FaTwitter />
-              </a>
+            ))}
+            <div className="relative">
+              <FaPen className="absolute left-4 top-4 text-gray-500 text-2xl" />
+              <textarea
+                rows="5"
+                placeholder="Type your message here"
+                className="w-full pl-14 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+              ></textarea>
             </div>
+            <button
+              type="submit"
+              className="w-[50%] bg-red-500 text-white py-4 rounded-2xl font-bold hover:opacity-90 transition-opacity duration-300 mx-auto block"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+      </section>
+
+
+      {/* Social Media */}
+      <section className="py-6 bg-gray-100">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl font-bold mb-6">Follow Us</h2>
+          <div className="flex justify-center space-x-8">
+            {[
+              {
+                href: "https://facebook.com/turfhub",
+                Icon: FaFacebook,
+                color: "#1877F2", // Facebook blue
+              },
+              {
+                href: "https://instagram.com/turfhub",
+                Icon: FaInstagram,
+                color: "#E1306C", // Instagram gradient pink
+              },
+              {
+                href: "https://wa.me/+919876543210",
+                Icon: FaWhatsapp,
+                color: "#25D366", // WhatsApp green
+              },
+              {
+                href: "https://x.com/turfhub",
+                Icon: TbX,
+                color: "#1DA1F2", // X (Twitter) blue
+              },
+            ].map((social, index) => (
+              <a
+                key={index}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:scale-110 transform transition-transform duration-300"
+                style={{ color: social.color }} // Apply default brand color
+              >
+                <social.Icon className="text-4xl" />
+              </a>
+            ))}
           </div>
         </div>
+      </section>
 
-        {/* Back-to-Top Button */}
-        <div className="mt-12">
-          <a
-            href="#top"
-            className="inline-flex items-center text-red-500 hover:text-white font-semibold transition duration-300 ease-in-out text-4xl"
-          >
-            <span>Back to Top</span>
-            <svg
-              className="ml-2 h-6 w-6 transform transition-all duration-300 ease-in-out hover:translate-y-1"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 9l-7-7-7 7"
-              />
-            </svg>
-          </a>
+
+
+      {/* Footer */}
+      <footer className="bg-gray-800 text-white py-6">
+        <div className="max-w-4xl mx-auto text-center space-y-4">
+          <p className="text-lg font-medium">
+            Designed with ❤️ for sports enthusiasts in Tamil Nadu.
+          </p>
+          <p className="text-sm">© 2024 Turfhub. All Rights Reserved.</p>
         </div>
-      </div>
+      </footer>
+
+      {/* Toast Notifications */}
+      <ToastContainer position="bottom-right" autoClose={5000} hideProgressBar />
     </div>
   );
 };

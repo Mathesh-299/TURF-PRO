@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Navigate, Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Navbar from "./component/Navbar";
@@ -8,7 +8,7 @@ import AdminLogin from "./page/AdminLogin";
 import AdminRegister from "./page/AdminRegister";
 import Contact from "./page/Contact";
 import GroundBooking from "./page/GroundBooking";
-import { default as Groundpage } from "./page/Groundpage";
+import Groundpage from "./page/Groundpage";
 import Home from "./page/Home";
 import Login from "./page/Login";
 import Main from "./page/Main";
@@ -77,7 +77,7 @@ const App = () => {
                             }
                         />
 
-                        <Route path="*" element={<Navigate to="/" />} />
+                        {/* <Route path="*" element={<Navigate to="/" />} /> */}
                     </Routes>
                 </div>
                 {/* Other components */}

@@ -27,7 +27,7 @@ const Login = () => {
       localStorage.setItem("token", res.data);
       toast.success("Login Successful! Welcome back.");
       console.log("Login Successful");
-      navigate('/'); // Use navigate to go to the /bookings page
+      navigate('/'); 
     } catch (error) {
       if (error.response && error.response.status >= 400 && error.response.status <= 500) {
         setError(error.response.data.message);

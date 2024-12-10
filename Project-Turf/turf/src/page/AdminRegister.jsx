@@ -1,14 +1,15 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { FaEye, FaEyeSlash } from "react-icons/fa"; // Eye icons for password visibility
+import toast from "react-hot-toast"; // For Toaster notifications
+import { FaEye, FaEyeSlash, FaLock, FaRegCheckCircle, FaUserAlt } from "react-icons/fa"; // Icons for input fields
 import { useNavigate } from "react-router-dom";
+import adminImage from '../assets/img/Bg.jpg';
 
 const AdminRegister = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
-    const [successMessage, setSuccessMessage] = useState("");
     const [loading, setLoading] = useState(false);
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
@@ -64,35 +65,55 @@ const AdminRegister = () => {
                 username,
                 password,
             });
-            setSuccessMessage(response.data.message);
+            toast.success(response.data.message); // Show success toast
             setUsername("");
             setPassword("");
             setConfirmPassword("");
         } catch (err) {
-            setErrorMessage(err.response?.data?.message || "Registration failed");
+            toast.error(err.response?.data?.message || "Registration failed"); // Show error toast
         } finally {
             setLoading(false);
         }
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-r from-blue-100 via-teal-200 to-lime-200 flex justify-center items-center">
-            <div className="flex max-w-6xl w-full bg-white p-8 rounded-xl shadow-lg">
-                {/* Left side - Form */}
-                <div className="w-full md:w-1/2 space-y-6">
+        <div className="min-h-screen flex justify-center items-center bg-gray-300">
+            <div className="flex w-full max-w-7xl bg-blue-50 p-8 rounded-xl shadow-lg">
+                {/* Left side - Admin Related Info */}
+                <div
+                    className="hidden md:block w-full md:w-1/2 bg-cover bg-center h-screen rounded-xl"
+                    style={{ backgroundImage: `url(${adminImage})`, backgroundPosition: 'center', backgroundSize: 'cover' }}
+                >
+                    {/* Content goes here */}
+                    <div className="w-full h-full bg-black bg-opacity-40 p-8 rounded-xl space-y-6">
+                        <h2 className="text-4xl font-extrabold text-white mb-4">Welcome to TurfHub Admin</h2>
+                        <p className="text-lg text-white mb-4">
+                            Manage TurfHub services, bookings, and user access efficiently. As an admin, you can ensure smooth operations and user satisfaction.
+                        </p>
+                        <p className="text-lg text-white mb-6">
+                            Register now to get access to all admin features and start managing your TurfHub platform.
+                        </p>
+                    </div>
+                </div>
+
+                {/* Right side - Registration Form */}
+                <div className="w-full md:w-1/2 space-y-6 bg-white p-8 rounded-xl shadow-lg">
                     <h1 className="text-4xl font-semibold text-center text-gray-700 mb-6">Admin Registration</h1>
                     <form onSubmit={handleRegister} className="space-y-6">
                         {/* Username Input */}
                         <div className="relative">
                             <label htmlFor="username" className="block text-gray-600 font-medium">Username</label>
-                            <input
-                                type="text"
-                                id="username"
-                                value={username}
-                                onChange={handleUsernameChange}
-                                placeholder="Enter username"
-                                className="w-full p-3 mt-2 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 ease-in-out hover:ring-2 hover:ring-blue-300 focus:ring-blue-600"
-                            />
+                            <div className="flex items-center border-2 border-gray-300 rounded-md mt-2">
+                                <FaUserAlt className="text-gray-400 ml-3" />
+                                <input
+                                    type="text"
+                                    id="username"
+                                    value={username}
+                                    onChange={handleUsernameChange}
+                                    placeholder="Enter username"
+                                    className="w-full p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-md"
+                                />
+                            </div>
                             {usernameExists && (
                                 <p className="text-sm text-red-500 mt-2">This username is already taken</p>
                             )}
@@ -101,45 +122,51 @@ const AdminRegister = () => {
                         {/* Password Input */}
                         <div className="relative">
                             <label htmlFor="password" className="block text-gray-600 font-medium">Password</label>
-                            <input
-                                type={passwordVisible ? "text" : "password"}
-                                id="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                placeholder="Enter password"
-                                className="w-full p-3 mt-2 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 ease-in-out hover:ring-2 hover:ring-blue-300 focus:ring-blue-600"
-                            />
-                            <span
-                                className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
-                                onClick={() => setPasswordVisible(!passwordVisible)}
-                            >
-                                {passwordVisible ? <FaEyeSlash /> : <FaEye />}
-                            </span>
+                            <div className="flex items-center border-2 border-gray-300 rounded-md mt-2">
+                                <FaLock className="text-gray-400 ml-3" />
+                                <input
+                                    type={passwordVisible ? "text" : "password"}
+                                    id="password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    placeholder="Enter password"
+                                    className="w-full p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-md"
+                                />
+                                <span
+                                    className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
+                                    onClick={() => setPasswordVisible(!passwordVisible)}
+                                >
+                                    {passwordVisible ? <FaEyeSlash /> : <FaEye />}
+                                </span>
+                            </div>
                         </div>
 
                         {/* Confirm Password Input */}
                         <div className="relative">
                             <label htmlFor="confirmPassword" className="block text-gray-600 font-medium">Confirm Password</label>
-                            <input
-                                type={confirmPasswordVisible ? "text" : "password"}
-                                id="confirmPassword"
-                                value={confirmPassword}
-                                onChange={(e) => setConfirmPassword(e.target.value)}
-                                placeholder="Confirm your password"
-                                className="w-full p-3 mt-2 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 ease-in-out hover:ring-2 hover:ring-blue-300 focus:ring-blue-600"
-                            />
-                            <span
-                                className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
-                                onClick={() => setConfirmPasswordVisible(!confirmPasswordVisible)}
-                            >
-                                {confirmPasswordVisible ? <FaEyeSlash /> : <FaEye />}
-                            </span>
+                            <div className="flex items-center border-2 border-gray-300 rounded-md mt-2">
+                                <FaRegCheckCircle className="text-gray-400 ml-3" />
+                                <input
+                                    type={confirmPasswordVisible ? "text" : "password"}
+                                    id="confirmPassword"
+                                    value={confirmPassword}
+                                    onChange={(e) => setConfirmPassword(e.target.value)}
+                                    placeholder="Confirm your password"
+                                    className="w-full p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-md"
+                                />
+                                <span
+                                    className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
+                                    onClick={() => setConfirmPasswordVisible(!confirmPasswordVisible)}
+                                >
+                                    {confirmPasswordVisible ? <FaEyeSlash /> : <FaEye />}
+                                </span>
+                            </div>
                         </div>
 
                         {/* Submit Button */}
                         <button
                             type="submit"
-                            className={`w-full p-3 mt-4 text-white font-semibold rounded-md ${loading ? "bg-gray-400" : "bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300"} transition-all duration-300 ease-in-out`}
+                            className={`w-full p-3 mt-4 text-white font-semibold rounded-md ${loading ? "bg-gray-400" : "bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300"} transition-all`}
                             disabled={loading}
                         >
                             {loading ? "Registering..." : "Register"}
@@ -150,11 +177,6 @@ const AdminRegister = () => {
                     {errorMessage && (
                         <div className="mt-4 text-red-500 text-center">
                             <p>{errorMessage}</p>
-                        </div>
-                    )}
-                    {successMessage && (
-                        <div className="mt-4 text-green-500 text-center">
-                            <p>{successMessage}</p>
                         </div>
                     )}
 
@@ -171,20 +193,8 @@ const AdminRegister = () => {
                         </p>
                     </div>
                 </div>
-
-                {/* Right side - Admin Related Info */}
-                <div className="hidden md:block md:w-1/2 pl-12 space-y-6">
-                    <h2 className="text-2xl font-semibold text-gray-700">Welcome to TurfHub Admin</h2>
-                    <p className="text-gray-600">
-                        Manage your TurfHub services and bookings efficiently. As an admin, you have the ability to control user access, manage bookings, and ensure everything runs smoothly for all users.
-                    </p>
-                    <p className="text-gray-600">
-                        Please fill out the form on the left to register as an admin and gain access to all admin features.
-                    </p>
-                </div>
             </div>
         </div>
-
     );
 };
 

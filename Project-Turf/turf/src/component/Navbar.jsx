@@ -29,7 +29,7 @@ const Navbar = ({ user, onLogout }) => {
                                 alt="User Avatar"
                                 className="w-12 h-12 rounded-full ring-2 ring-yellow-500"
                             />
-                            <span className="font-semibold text-lg">{user.name}</span>
+                            {/* <span className="font-semibold text-lg">{user.name}</span> */}
                             <button
                                 onClick={onLogout}
                                 className="bg-red-600 hover:bg-red-700 px-6 py-3 rounded-lg text-white text-lg transition duration-300"
@@ -63,7 +63,7 @@ const Navbar = ({ user, onLogout }) => {
                                 alt="User Avatar"
                                 className="w-12 h-12 rounded-full ring-2 ring-yellow-500"
                             />
-                            <span className="font-semibold text-lg">{user.name}</span>
+                            {/* <span className="font-semibold text-lg">{user.name}</span> */}
                             <button
                                 onClick={onLogout}
                                 className="bg-red-600 hover:bg-red-700 px-6 py-3 rounded-lg text-white text-lg transition duration-300"

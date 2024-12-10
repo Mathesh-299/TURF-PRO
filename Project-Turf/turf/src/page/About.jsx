@@ -1,61 +1,85 @@
-import React from 'react';
+import React from "react";
+import { FaCompass, FaEnvelope, FaMapMarkerAlt, FaPhoneAlt, FaTrophy } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 
 const About = () => {
     return (
-        <div className="min-h-screen bg-gradient-to-r from-gray-300 to-green-300 flex flex-col">
-            <div className="flex-grow pt-24 px-4">
-                <div className="bg-white p-8 rounded-lg shadow-xl max-w-3xl mx-auto transform transition duration-500 hover:scale-105">
-                    <h1 className="text-4xl font-extrabold text-center text-orange-600 mb-6">
-                        About <span className="text-green-600">TurfHub India</span>
-                    </h1>
-                    <p className="text-lg text-gray-800 mb-6 leading-relaxed">
-                        TurfHub India is dedicated to promoting sports and fitness by making turf bookings easier for
-                        players across the country. From the bustling streets of Mumbai to the cultural heart of Chennai,
-                        TurfHub serves as the go-to platform for turf bookings, tournaments, and community sports events.
-                        We aim to create a space where sports enthusiasts can connect and enjoy their favorite games,
-                        all while embracing the vibrant spirit of India.
-                    </p>
+        <div className="bg-gray-100 min-h-screen">
+            <div className="max-w-7xl mx-auto p-6">
+                <h2 className="text-4xl font-bold text-gray-800 text-center my-6">About Turfhub</h2>
+                <p className="text-lg text-gray-600 text-center mb-8">
+                    Welcome to <span className="text-red-500 font-bold">Turf</span>
+                    <span className="text-yellow-500 font-bold">hub</span>, your trusted partner for turf
+                    bookings across Tamil Nadu. Our platform connects sports enthusiasts from cities like
+                    Chennai, Coimbatore, Madurai, Trichy, and beyond to top-quality sports facilities.
+                </p>
 
-                    <h2 className="text-3xl font-semibold text-gray-800 mb-4">Our Mission</h2>
-                    <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                        TurfHub India is committed to making sports more accessible across every corner of the country.
-                        Whether you're in a metro city or a small town, we provide a platform that brings people together,
-                        encourages a healthy lifestyle, and fosters team spirit through sports. Our mission is to empower
-                        individuals and communities by offering an easy-to-use platform for turf bookings, with an emphasis
-                        on local engagement and cultural diversity.
-                    </p>
-
-                    <h2 className="text-3xl font-semibold text-gray-800 mb-4">Our Core Values</h2>
-                    <ul className="list-disc list-inside text-lg text-gray-600 mb-6">
-                        <li><span className="font-semibold">Unity in Diversity:</span> Embracing India's cultural diversity through sports.</li>
-                        <li><span className="font-semibold">Passion for Sports:</span> Sports are the heart of India's community culture.</li>
-                        <li><span className="font-semibold">Accessibility for All:</span> Making turf facilities accessible across all regions.</li>
-                        <li><span className="font-semibold">Fostering Healthy Lifestyles:</span> Encouraging fitness and outdoor activities.</li>
-                    </ul>
-
-                    <h2 className="text-3xl font-semibold text-gray-800 mb-4">Celebrating Indian Sports Culture</h2>
-                    <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                        India has a rich and diverse sporting culture, from cricket fields to kabaddi grounds, and from football
-                        pitches to badminton courts. TurfHub India taps into this passion, offering a platform that allows individuals
-                        and teams to come together and experience the thrill of the game. Whether you’re playing in the
-                        streets of Delhi or the beaches of Goa, TurfHub is here to support and encourage every player.
-                    </p>
-
-                    <h2 className="text-3xl font-semibold text-gray-800 mb-4">Contact Us</h2>
-                    <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                        Have questions or need assistance? Our team is here to help! Get in touch with us:
-                    </p>
-                    <div className="space-y-4">
-                        <p className="text-lg text-gray-600">
-                            <span className="font-semibold">Email:</span> <a href="mailto:support@turfhubindia.com" className="text-blue-500 hover:text-blue-700">support@turfhubindia.com</a>
-                        </p>
-                        <p className="text-lg text-gray-600">
-                            <span className="font-semibold">Phone:</span> <a href="tel:+918001234567" className="text-blue-500 hover:text-blue-700">+91 800-123-4567</a>
-                        </p>
-                        <p className="text-lg text-gray-600">
-                            <span className="font-semibold">Address:</span> TurfHub India, Sports Complex, New Delhi, India
+                {/* Key Features */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="p-6 bg-white shadow-lg rounded-lg flex flex-col items-center text-center">
+                        <FaMapMarkerAlt className="text-red-500 text-5xl mb-4" />
+                        <h3 className="text-2xl font-semibold text-gray-800">Extensive Reach</h3>
+                        <p className="text-gray-600">
+                            We cover major cities across Tamil Nadu, ensuring you can book turfs in your location
+                            quickly and easily.
                         </p>
                     </div>
+                    <div className="p-6 bg-white shadow-lg rounded-lg flex flex-col items-center text-center">
+                        <FaPhoneAlt className="text-green-500 text-5xl mb-4" />
+                        <h3 className="text-2xl font-semibold text-gray-800">24/7 Assistance</h3>
+                        <p className="text-gray-600">
+                            Our dedicated support team is here to assist you anytime, providing smooth booking
+                            experiences.
+                        </p>
+                    </div>
+                    <div className="p-6 bg-white shadow-lg rounded-lg flex flex-col items-center text-center">
+                        <FaTrophy className="text-yellow-500 text-5xl mb-4" />
+                        <h3 className="text-2xl font-semibold text-gray-800">Top-Class Facilities</h3>
+                        <p className="text-gray-600">
+                            Partnered with premium turfs to bring you exceptional sports facilities for every need.
+                        </p>
+                    </div>
+                </div>
+
+                {/* Why Choose Us */}
+                <div className="mt-10 p-6 bg-gradient-to-r from-gray-500 to-purple-400 text-white rounded-lg shadow-lg">
+                    <h3 className="text-3xl font-bold text-center mb-4">Why Choose Turfhub?</h3>
+                    <ul className="text-lg space-y-2">
+                        <li>🌟 Seamless booking experience</li>
+                        <li>🌟 Real-time availability updates</li>
+                        <li>🌟 Extensive network across Tamil Nadu</li>
+                        <li>🌟 Affordable rates with exclusive offers</li>
+                    </ul>
+                </div>
+
+                {/* Contact Section */}
+                <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="p-6 bg-white shadow-lg rounded-lg text-center">
+                        <FaEnvelope className="text-blue-500 text-5xl mb-4" />
+                        <h3 className="text-2xl font-semibold text-gray-800">Email Us</h3>
+                        <p className="text-gray-600">support@turfhub.com</p>
+                    </div>
+                    <div className="p-6 bg-white shadow-lg rounded-lg text-center">
+                        <FaPhoneAlt className="text-green-500 text-5xl mb-4" />
+                        <h3 className="text-2xl font-semibold text-gray-800">Call Us</h3>
+                        <p className="text-gray-600">+91 98765 43210</p>
+                    </div>
+                    <div className="p-6 bg-white shadow-lg rounded-lg text-center">
+                        <FaMapMarkerAlt className="text-red-500 text-5xl mb-4" />
+                        <h3 className="text-2xl font-semibold text-gray-800">Visit Us</h3>
+                        <p className="text-gray-600">Multiple locations across Tamil Nadu</p>
+                    </div>
+                </div>
+
+                {/* Explore Button */}
+                <div className="mt-12 flex justify-center">
+                    <NavLink
+                        to="/groundpage"
+                        className="flex items-center bg-yellow-500 text-white px-6 py-3 rounded-lg shadow-lg text-lg font-semibold hover:bg-yellow-600 transition duration-300"
+                    >
+                        <FaCompass className="mr-2 text-2xl" />
+                        Explore
+                    </NavLink>
                 </div>
             </div>
         </div>
@@ -63,4 +87,3 @@ const About = () => {
 };
 
 export default About;
-    
