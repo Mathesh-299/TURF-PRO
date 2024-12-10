@@ -16,7 +16,7 @@ const About = () => {
 
                 {/* Key Features */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="p-6 bg-white shadow-lg rounded-lg flex flex-col items-center text-center">
+                    <div className="p-6 bg-blue-200 shadow-lg rounded-lg flex flex-col items-center text-center text-black">
                         <FaMapMarkerAlt className="text-red-500 text-5xl mb-4" />
                         <h3 className="text-2xl font-semibold text-gray-800">Extensive Reach</h3>
                         <p className="text-gray-600">
@@ -24,7 +24,7 @@ const About = () => {
                             quickly and easily.
                         </p>
                     </div>
-                    <div className="p-6 bg-white shadow-lg rounded-lg flex flex-col items-center text-center">
+                    <div className="p-6 bg-blue-200 shadow-lg rounded-lg flex flex-col items-center text-center">
                         <FaPhoneAlt className="text-green-500 text-5xl mb-4" />
                         <h3 className="text-2xl font-semibold text-gray-800">24/7 Assistance</h3>
                         <p className="text-gray-600">
@@ -32,7 +32,7 @@ const About = () => {
                             experiences.
                         </p>
                     </div>
-                    <div className="p-6 bg-white shadow-lg rounded-lg flex flex-col items-center text-center">
+                    <div className="p-6 bg-blue-200 shadow-lg rounded-lg flex flex-col items-center text-center">
                         <FaTrophy className="text-yellow-500 text-5xl mb-4" />
                         <h3 className="text-2xl font-semibold text-gray-800">Top-Class Facilities</h3>
                         <p className="text-gray-600">
@@ -75,7 +75,7 @@ const About = () => {
                 <div className="mt-12 flex justify-center">
                     <NavLink
                         to="/groundpage"
-                        className="flex items-center bg-yellow-500 text-white px-6 py-3 rounded-lg shadow-lg text-lg font-semibold hover:bg-yellow-600 transition duration-300"
+                        className="flex items-center bg-purple-600 text-white px-6 py-3 rounded-lg shadow-lg text-lg font-semibold hover:bg-yellow-600 transition duration-300"
                     >
                         <FaCompass className="mr-2 text-2xl" />
                         Explore

@@ -45,7 +45,7 @@ const AdminLogin = () => {
             localStorage.setItem("adminToken", token);
             setShowSuccessToaster(true);  // Show success toaster
             setTimeout(() => setShowSuccessToaster(false), 5000); // Hide success toaster after 5 seconds
-            navigate("/");  // Redirect to the home page
+            navigate("/adminside");  // Redirect to the home page
         } catch (err) {
             setErrorMessage("Invalid credentials. Please try again.");
             setShowToaster(true);
@@ -56,8 +56,8 @@ const AdminLogin = () => {
     };
 
     return (
-        <div className="flex justify-center items-center min-h-screen bg-gray-200">
-            <div className="w-full max-w-xl bg-white/200 p-10 rounded-3xl shadow-lg">
+        <div className="flex justify-center items-center min-h-screen bg-gray-200 max-h-96">
+            <div className="w-full max-w-xl bg-white/85 p-10 rounded-3xl shadow-lg">
                 <h1 className="text-4xl font-extrabold text-center text-gray-800 mb-6">
                     Admin Login
                 </h1>
@@ -142,7 +142,7 @@ const AdminLogin = () => {
                     </p>
                 </div>
             </div>  
-            <div className="hidden md:block w-1/2 bg-cover bg-center text-white p-8 rounded-3xl shadow-2xl " style={{ backgroundImage: `url(${adminImage})` }} >
+            <div className="hidden md:block w-1/2 bg-cover bg-center text-black p-8 rounded-3xl shadow-2xl " style={{ backgroundImage: `url(${adminImage})` }} >
                 <h2 className="text-3xl font-bold mb-6 tracking-tight leading-tight">Welcome to the Admin Panel</h2>
                 <p className="text-lg mb-4 opacity-80">
                     As an admin, you have full control over the Turf Hub platform. Here's what you can do:

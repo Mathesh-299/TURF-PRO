@@ -3,6 +3,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Navbar from "./component/Navbar";
+import AdminPanel from "./content/AdminPanel";
 import About from "./page/About";
 import AdminLogin from "./page/AdminLogin";
 import AdminRegister from "./page/AdminRegister";
@@ -66,6 +67,7 @@ const App = () => {
                         <Route path="/adminlogin" element={<AdminLogin onLogin={handleLogin} />} />
                         <Route path="/adminregister" element={<AdminRegister />} />
                         <Route path="/groundpage" element={<Groundpage />} />
+                        <Route path="/adminside" element={<AdminPanel />} />
 
                         <Route path="/main" element={<Main />} />
                         <Route

@@ -8,14 +8,13 @@ import pic4 from "../assets/img/premium_photo-1666913667082-c1fecc45275d.jpeg";
 
 const Sports = () => {
     return (
-        <div className="min-h-screen bg-gradient-to-r from-green-500 via-blue-400 to-gray-500 py-20">
+        <div className="min-h-screen bg-gray-200 to-gray-500 py-20">
             <div className="max-w-6xl mx-auto text-center px-4">
-                <h1 className="text-5xl font-extrabold text-white mb-8 tracking-wide">
+                <h1 className="text-5xl font-extrabold text-black/70 mb-8 tracking-wide">
                     TurfHub Sports
                 </h1>
-                <p className="text-lg text-white mb-10 leading-relaxed">
-                    Book your favorite turf and enjoy a variety of exciting sports games with friends, family, or teammates. Our turfs are designed to provide an unmatched sporting experience.
-                </p>
+                <p className="text-lg text-black mb-10 leading-relaxed">
+                    Book your favorite turf and enjoy a variety of exciting sports games with friends, family, or teammates. Our turfs are designed to provide an unmatched sporting experience.</p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     {/* Football */}
                     <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300">

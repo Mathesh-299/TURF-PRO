@@ -80,7 +80,7 @@ const Contact = () => {
       </section>
 
       <section className="bg-gray-200 py-8">
-        <div className="max-w-3xl mx-auto bg-white shadow-lg rounded-lg p-8">
+        <div className="max-w-xl mx-auto bg-white shadow-lg rounded-lg p-8">
           <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">
             Send Us a Message
           </h2>

@@ -79,12 +79,10 @@ const AdminRegister = () => {
     return (
         <div className="min-h-screen flex justify-center items-center bg-gray-300">
             <div className="flex w-full max-w-7xl bg-blue-50 p-8 rounded-xl shadow-lg">
-                {/* Left side - Admin Related Info */}
                 <div
                     className="hidden md:block w-full md:w-1/2 bg-cover bg-center h-screen rounded-xl"
                     style={{ backgroundImage: `url(${adminImage})`, backgroundPosition: 'center', backgroundSize: 'cover' }}
                 >
-                    {/* Content goes here */}
                     <div className="w-full h-full bg-black bg-opacity-40 p-8 rounded-xl space-y-6">
                         <h2 className="text-4xl font-extrabold text-white mb-4">Welcome to TurfHub Admin</h2>
                         <p className="text-lg text-white mb-4">
@@ -166,7 +164,7 @@ const AdminRegister = () => {
                         {/* Submit Button */}
                         <button
                             type="submit"
-                            className={`w-full p-3 mt-4 text-white font-semibold rounded-md ${loading ? "bg-gray-400" : "bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300"} transition-all`}
+                            className={`w-[50%] p-3 mt-4 text-white font-semibold rounded-md ${loading ? "bg-gray-400" : "bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300"} transition-all`}
                             disabled={loading}
                         >
                             {loading ? "Registering..." : "Register"}
